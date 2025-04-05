@@ -29,6 +29,11 @@ def main():
         pygame.Surface.fill(screen, color="black")
         updatable.update(dt)
         for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides(shot):
+                    asteroid.split()
+                    shot.kill()
+        for asteroid in asteroids:
             if player1.collides(asteroid):
                 print("Game over!")
                 sys.exit()
